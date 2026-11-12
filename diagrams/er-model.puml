@@ -1,0 +1,59 @@
+@startuml er-model
+title SööklaTellimus – andmemudel (ER)
+skinparam shadowing false
+hide circle
+
+entity "app_user" as user {
+  *id : bigint <<PK>>
+  --
+  *email : varchar(255) <<unique>>
+  *full_name : varchar(100)
+  *role : varchar(20)  ' STUDENT, STAFF, ADMIN
+  notifications_enabled : boolean
+}
+
+entity "menu_item" as item {
+  *id : bigint <<PK>>
+  --
+  *name : varchar(100)
+  *price_cents : int
+  *serving_date : date
+  description : text
+}
+
+entity "allergen" as allergen {
+  *id : bigint <<PK>>
+  --
+  *name : varchar(50) <<unique>>
+}
+
+entity "menu_item_allergen" as mia {
+  *menu_item_id : bigint <<FK>>
+  *allergen_id : bigint <<FK>>
+}
+
+entity "orders" as order {
+  *id : bigint <<PK>>
+  --
+  *user_id : bigint <<FK>>
+  *pickup_time : time
+  *order_date : date
+  *status : varchar(20)  ' SUBMITTED, READY, COLLECTED, CANCELLED
+  *created_at : timestamp
+}
+
+entity "order_item" as oi {
+  *id : bigint <<PK>>
+  --
+  *order_id : bigint <<FK>>
+  *menu_item_id : bigint <<FK>>
+  *quantity : int
+  *unit_price_cents : int
+}
+
+user ||--o{ order : esitab
+order ||--|{ oi : sisaldab
+item ||--o{ oi : on tellitud
+item ||--o{ mia
+allergen ||--o{ mia
+@enduml

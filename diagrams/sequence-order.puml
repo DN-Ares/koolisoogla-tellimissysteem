@@ -1,0 +1,32 @@
+@startuml sequence-order
+title Andmevoog: õpilane esitab tellimuse (kasutajaliidesest andmebaasini)
+skinparam shadowing false
+
+actor "Õpilane" as u
+participant "React SPA" as spa
+participant "REST kontroller\n(OrderController)" as c
+participant "Turvafilter" as s
+participant "OrderService" as svc
+participant "OrderRepository" as r
+database "PostgreSQL" as db
+
+u -> spa : Valib toidud ja lõunaaja, vajutab "Telli"
+spa -> c : POST /api/orders\n{ items:[{menuItemId, qty}], pickupTime }\n+ Authorization: Bearer <token>
+c -> s : Kontrolli token ja roll
+s --> c : Kasutaja (õpilane)
+c -> svc : placeOrder(userId, orderRequest)
+svc -> svc : Valideeri (tähtaeg 09:30, kogused, toit olemas)
+alt Valideerimine ebaõnnestub
+  svc --> c : viga (nt TellimuseTähtaegÜletatud)
+  c --> spa : 409 Conflict + veateade
+  spa --> u : Näitab veateadet
+else Korras
+  svc -> r : save(order)
+  r -> db : INSERT orders, order_items
+  db --> r : OK
+  r --> svc : Order(id)
+  svc --> c : OrderDto
+  c --> spa : 201 Created + OrderDto (JSON)
+  spa --> u : Kinnitus "Tellimus esitatud"
+end
+@enduml

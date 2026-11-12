@@ -1,0 +1,56 @@
+@startuml architecture
+title SööklaTellimus – arhitektuur (kihiline monoliit)
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+actor "Õpilane" as student
+actor "Sööklatöötaja" as staff
+actor "Administraator" as admin
+
+node "Kasutaja seade (brauser)" {
+  [React ühelehe rakendus (SPA)] as spa
+}
+
+node "Server (üks paigaldatav üksus)" {
+  [Nginx\n(HTTPS, staatilised failid)] as nginx
+
+  package "Spring Boot rakendus" {
+    package "Esitluskiht" {
+      [REST kontrollerid] as ctrl
+      [Turvafilter\n(OIDC, rollid)] as sec
+    }
+    package "Ärikiht" {
+      [MenuService] as menuSvc
+      [OrderService] as orderSvc
+      [UserService] as userSvc
+      [NotificationService] as notifSvc
+    }
+    package "Andmepöördus" {
+      [Repository\n(Spring Data JPA)] as repo
+    }
+  }
+
+  database "PostgreSQL" as db
+}
+
+cloud "Kooli identiteedipakkuja\n(OIDC)" as idp
+cloud "SMTP e-posti server" as smtp
+
+student --> spa
+staff --> spa
+admin --> spa
+
+spa --> nginx : HTTPS
+nginx --> ctrl : HTTP\nJSON (REST)
+ctrl --> sec
+ctrl --> menuSvc
+ctrl --> orderSvc
+ctrl --> userSvc
+orderSvc --> notifSvc
+menuSvc --> repo
+orderSvc --> repo
+userSvc --> repo
+repo --> db : SQL (JDBC)
+sec --> idp : OIDC\n(sisselogimine)
+notifSvc --> smtp : SMTP
+@enduml

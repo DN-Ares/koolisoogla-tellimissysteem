@@ -1,0 +1,33 @@
+@startuml usecase
+title SööklaTellimus – kasutusjuhud
+left to right direction
+skinparam shadowing false
+
+actor "Õpilane" as student
+actor "Sööklatöötaja" as staff
+actor "Administraator" as admin
+admin --|> staff
+
+rectangle "SööklaTellimus" {
+  usecase "Logi sisse kooli kontoga" as UC1
+  usecase "Vaata menüüd" as UC2
+  usecase "Telli toit" as UC3
+  usecase "Tühista tellimus" as UC4
+  usecase "Vaata allergeene" as UC5
+  usecase "Vaata tellimuste koondit" as UC6
+  usecase "Muuda tellimuse staatust" as UC7
+  usecase "Halda menüüd" as UC8
+  usecase "Vaata müügiaruannet" as UC9
+}
+
+student --> UC2
+student --> UC3
+student --> UC4
+UC2 .> UC5 : <<include>>
+UC3 .> UC1 : <<include>>
+UC4 .> UC1 : <<include>>
+staff --> UC6
+staff --> UC7
+admin --> UC8
+admin --> UC9
+@enduml
