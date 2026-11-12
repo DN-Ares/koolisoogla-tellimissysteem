@@ -1,0 +1,14 @@
+# Redaktorite ja operatsioonisüsteemi failid
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+.DS_Store
+
+# draw.io varukoopiad
+*.bkp
+*.dtmp
+.$*.bkp
+
+# Genereeritud pildid (lähtefailid on allikas)
+diagrams/out/
