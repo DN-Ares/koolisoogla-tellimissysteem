@@ -113,6 +113,6 @@ Valisin GitHub Projects'i, sest see on integreeritud koodirepositooriumiga (Issu
 4. Loo kasutajalood issue'tena skriptiga [scripts/create-github-issues.ps1](../scripts/create-github-issues.ps1) (loeb `backlog/backlog.csv`), seejärel lisa issue'd projekti ("Add item" või workflow "Auto-add").
 5. Tõsta Sprint 1 lood veergu *Sprint backlog* ja määra `Sprint = Sprint 1`.
 
-> Viide tööde haldamise keskkonnale (lisa pärast projekti loomist): **GitHub Projects: _[lisa link siia]_**
+> Viide tööde haldamise keskkonnale: **[GitHub Projects tahvel](https://github.com/users/DN-Ares/projects/2/views/1)**
 
 Ekraanitõmmis tahvlist lisatakse kausta `docs/img/` pärast tahvli seadistamist.

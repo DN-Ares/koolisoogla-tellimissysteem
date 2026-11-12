@@ -11,8 +11,8 @@ Tarkvaraarenduse planeerimisülesanne (VIKK, tarkvaraarenduse õpe). Repositoori
 | Projekti kirjeldus ja nõuded | [docs/00-projekti-kirjeldus.md](docs/00-projekti-kirjeldus.md) |
 | **1. Arendusprotsess** (etapid, mudelite võrdlus, valik, nõuete muutumine) | [docs/01-arendusprotsess.md](docs/01-arendusprotsess.md) |
 | **2. Metoodika** (Scrum), kasutajalood, prioriteedid, Sprint 1 | [docs/02-metoodika-ja-backlog.md](docs/02-metoodika-ja-backlog.md) |
-| Backlog (CSV, 11 lugu) | [backlog/backlog.csv](backlog/backlog.csv) |
-| Viide tööde haldamise keskkonnale (GitHub Projects) | _[lisa link siia pärast tahvli loomist]_ (juhend: [docs/02 §2.5](docs/02-metoodika-ja-backlog.md#25-projektihaldusvahend-github-projects)) |
+| Backlog (CSV, 12 tööd: 11 kasutalugu + tehniline ülesanne) | [backlog/backlog.csv](backlog/backlog.csv), [issue'd](https://github.com/DN-Ares/koolisoogla-tellimissysteem/issues) |
+| **Tööde haldamise keskkond (GitHub Projects tahvel)** | <https://github.com/users/DN-Ares/projects/2/views/1> (seadistus: [docs/02 §2.5](docs/02-metoodika-ja-backlog.md#25-projektihaldusvahend-github-projects)) |
 | **3. CASE-vahendid** (võrdlus, kasutusnäited) | [docs/03-case-vahendid.md](docs/03-case-vahendid.md) |
 | **4. Arhitektuur** (valik, andmevoog, võrdlus mikroteenustega) | [docs/04-arhitektuur.md](docs/04-arhitektuur.md) |
 | Arhitektuuriskeem, **muudetav** (diagrams.net) | [diagrams/architecture.drawio](diagrams/architecture.drawio) |
